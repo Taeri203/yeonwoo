@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { SectionTitle } from "@/components/common/SectionTitle";
 import { DistrictCard } from "@/components/cards/DistrictCard";
 import { CTASection } from "@/components/common/CTASection";
 import { districtGroups } from "@/data/districts";

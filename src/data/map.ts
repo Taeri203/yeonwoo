@@ -18,6 +18,7 @@ export const mapMarkers: MapMarker[] = [
   { title: "안지랑곱창골목", category: "관광상권", issue: "대표 상권 활성화", pledge: "앞산·안지랑·대명 문화관광 동선 구축", area: "안지랑", x: 44, y: 74 },
   { title: "앞산카페거리·앞산전망대", category: "관광상권", issue: "체류형 관광", pledge: "머무르는 남구 관광코스", area: "앞산권", x: 50, y: 82 },
   { title: "고산골 공룡공원", category: "관광상권", issue: "가족 관광", pledge: "앞산 가족문화·어린이 관광 동선 연결", area: "고산골", x: 28, y: 69 },
+  { title: "앞산 생활복지권", category: "복지", issue: "어르신 생활 안전", pledge: "앞산 생활권 복지·여가 프로그램과 보행 안전을 함께 정비", area: "봉덕·이천", x: 31, y: 61 },
   { title: "캠프조지 후적지", category: "후적지", issue: "행정복합타운", pledge: "캠프조지 후적지 행정복합타운 조성 추진", area: "후적지", x: 67, y: 30 },
   { title: "서부정류장 후적지", category: "후적지", issue: "도시재생과 개발", pledge: "서부정류장 후적지 개발", area: "서부정류장", x: 76, y: 78 },
   { title: "전선 지중화", category: "후적지", issue: "도시경관 개선", pledge: "도심 경관 개선과 노후 주거지 정비", area: "주거지", x: 62, y: 76 },

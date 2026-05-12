@@ -6,13 +6,13 @@ type Props = { title: string; description: string; href: string; buttonLabel: st
 export function CTASection({ title, description, href, buttonLabel, tone = "blue" }: Props) {
   const isBlue = tone === "blue";
   return (
-    <div className={cn("rounded-[2rem] p-7 md:p-10", isBlue ? "blue-gradient text-white" : "bg-[#FFF7D6] text-[#11205A]") }>
+    <div className={cn("rounded-[2rem] p-7 shadow-sm md:p-10", isBlue ? "blue-gradient text-white" : "border border-[#FFE88A] bg-[#FFF9E8] text-[#11205A]") }>
       <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
         <div>
           <h2 className="text-3xl font-black md:text-4xl">{title}</h2>
           <p className={cn("mt-3 leading-8", isBlue ? "text-blue-50" : "text-[#344054]")}>{description}</p>
         </div>
-        <Link href={href} className={cn("btn-base", isBlue ? "btn-yellow" : "btn-primary")}>
+        <Link href={href} className={cn("btn-base", isBlue ? "btn-yellow" : "btn-dark")}>
           {buttonLabel}<ArrowRight size={18} aria-hidden />
         </Link>
       </div>

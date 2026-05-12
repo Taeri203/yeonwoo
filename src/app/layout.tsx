@@ -13,5 +13,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="ko"><body><Header /><main>{children}</main><Footer /><MobileBottomCTA /></body></html>;
+  return (
+    <html lang="ko" data-scroll-behavior="smooth">
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <MobileBottomCTA />
+      </body>
+    </html>
+  );
 }
