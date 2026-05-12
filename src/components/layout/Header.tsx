@@ -5,7 +5,7 @@ import { MobileMenu } from "@/components/layout/MobileMenu";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#E5E7EB] bg-white/92 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-[#E5E7EB] bg-white lg:bg-white/92 lg:backdrop-blur">
       <div className="container-page flex h-[72px] items-center justify-between gap-4">
         <Link href="/" className="font-black text-[#11205A]"><span className="text-[#0052B8]">정</span>연우.kr</Link>
         <nav className="hidden items-center gap-4 text-sm font-black text-[#11205A] lg:flex">
