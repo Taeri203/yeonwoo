@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { domainToASCII } from "node:url";
 
 type VoicePayload = {
   name?: string;
@@ -48,7 +49,7 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.BREVO_API_KEY;
   const toEmail = process.env.VOICE_TO_EMAIL;
-  const fromEmail = process.env.VOICE_FROM_EMAIL;
+  const fromEmail = normalizeEmail(process.env.VOICE_FROM_EMAIL);
 
   if (!apiKey || !toEmail || !fromEmail) {
     return NextResponse.json({ message: "접수 설정이 아직 완료되지 않았습니다." }, { status: 500 });
@@ -60,33 +61,46 @@ export async function POST(request: Request) {
     timeZone: "Asia/Seoul",
   }).format(new Date());
 
-  const response = await fetch(BREVO_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "api-key": apiKey,
-      "content-type": "application/json",
-      accept: "application/json",
-    },
-    body: JSON.stringify({
-      sender: { name: "정연우.kr 유권자의 소리", email: fromEmail },
-      to: [{ email: toEmail }],
-      subject: `[정연우.kr 유권자의 소리] ${title}`,
-      htmlContent: renderEmail({
-        name,
-        phone,
-        residence,
-        category,
-        location,
-        title,
-        content,
-        reply,
-        submittedAt,
+  let response: Response;
+  try {
+    response = await fetch(BREVO_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "api-key": apiKey,
+        "content-type": "application/json",
+        accept: "application/json",
+      },
+      body: JSON.stringify({
+        sender: { name: "정연우.kr 유권자의 소리", email: fromEmail },
+        to: [{ email: toEmail }],
+        subject: `[정연우.kr 유권자의 소리] ${title}`,
+        htmlContent: renderEmail({
+          name,
+          phone,
+          residence,
+          category,
+          location,
+          title,
+          content,
+          reply,
+          submittedAt,
+        }),
       }),
-    }),
-  });
+    });
+  } catch (error) {
+    console.error("[voice] Brevo request failed", error);
+    return NextResponse.json({ message: "메일 발송 서버에 연결하지 못했습니다. 잠시 후 다시 시도해 주세요." }, { status: 502 });
+  }
 
   if (!response.ok) {
-    return NextResponse.json({ message: "의견 접수 중 오류가 발생했습니다." }, { status: 502 });
+    const errorText = await response.text().catch(() => "");
+    console.error("[voice] Brevo rejected request", {
+      status: response.status,
+      response: errorText,
+      fromEmail,
+      toConfigured: Boolean(toEmail),
+    });
+    return NextResponse.json({ message: getBrevoErrorMessage(response.status, errorText) }, { status: 502 });
   }
 
   return NextResponse.json({ message: "의견이 접수되었습니다." });
@@ -94,6 +108,32 @@ export async function POST(request: Request) {
 
 function clean(value: unknown, maxLength = MAX_FIELD_LENGTH) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
+}
+
+function normalizeEmail(value: string | undefined) {
+  if (!value) return "";
+  const trimmed = value.trim();
+  const at = trimmed.lastIndexOf("@");
+  if (at === -1) return trimmed;
+
+  const local = trimmed.slice(0, at);
+  const domain = trimmed.slice(at + 1);
+  const asciiDomain = domainToASCII(domain);
+  return asciiDomain ? `${local}@${asciiDomain}` : trimmed;
+}
+
+function getBrevoErrorMessage(status: number, errorText: string) {
+  const lower = errorText.toLowerCase();
+  if (status === 401 || status === 403) {
+    return "Brevo API Key 권한을 확인해 주세요.";
+  }
+  if (lower.includes("sender") || lower.includes("from")) {
+    return "Brevo 발신자 주소 인증을 확인해 주세요.";
+  }
+  if (lower.includes("domain")) {
+    return "Brevo 도메인 인증 상태를 확인해 주세요.";
+  }
+  return "의견 접수 중 메일 발송 오류가 발생했습니다.";
 }
 
 function escapeHtml(value: string) {
