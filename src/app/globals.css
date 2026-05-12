@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+:root {
+  --primary-blue: #0052B8;
+  --deep-blue: #11205A;
+  --bright-blue: #0877E8;
+  --light-blue: #EAF4FF;
+  --accent-yellow: #FFD84D;
+  --soft-yellow: #FFF7D6;
+  --cream: #FFF9E8;
+  --ink: #101828;
+  --muted: #667085;
+  --line: #E5E7EB;
+  --section-bg: #F8FAFC;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; }
+img { max-width: 100%; }
+
+.container-page { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+.campaign-gradient { background: radial-gradient(circle at 20% 0%, #EAF4FF 0%, transparent 32%), linear-gradient(135deg, #F8FBFF 0%, #FFFFFF 48%, #FFF7D6 100%); }
+.blue-gradient { background: linear-gradient(135deg, #11205A 0%, #0052B8 55%, #0877E8 100%); }
+.soft-grid { background-image: linear-gradient(#E5E7EB 1px, transparent 1px), linear-gradient(90deg, #E5E7EB 1px, transparent 1px); background-size: 28px 28px; }
+.image-card-glow { box-shadow: 0 30px 70px rgba(17, 32, 90, .18); }
+.form-input { width: 100%; border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; outline: none; background: #fff; }
+.form-input:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 4px rgba(0, 82, 184, .12); }
+@media (max-width: 768px) { .container-page { width: min(100% - 24px, 1120px); } body { padding-bottom: 74px; } }
