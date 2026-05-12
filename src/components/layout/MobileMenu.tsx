@@ -20,7 +20,7 @@ export function MobileMenu({ trigger }: { trigger: React.ReactNode }) {
             <nav className="mt-8 grid gap-2">
               {navItems.map((item) => <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 font-black text-[#11205A] hover:bg-[#EAF4FF]">{item.label}</Link>)}
             </nav>
-            <a href={siteConfig.phoneHref} className="mt-8 flex justify-center rounded-full bg-[#0052B8] px-5 py-4 font-black text-white">전화문의</a>
+            <a href={siteConfig.phoneHref} className="btn-base btn-primary mt-8 flex">전화문의</a>
           </div>
         </div>
       ) : null}

@@ -12,7 +12,7 @@ export function CTASection({ title, description, href, buttonLabel, tone = "blue
           <h2 className="text-3xl font-black md:text-4xl">{title}</h2>
           <p className={cn("mt-3 leading-8", isBlue ? "text-blue-50" : "text-[#344054]")}>{description}</p>
         </div>
-        <Link href={href} className={cn("inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 font-black", isBlue ? "bg-[#FFD84D] text-[#11205A]" : "bg-[#0052B8] text-white")}>
+        <Link href={href} className={cn("btn-base", isBlue ? "btn-yellow" : "btn-primary")}>
           {buttonLabel}<ArrowRight size={18} aria-hidden />
         </Link>
       </div>

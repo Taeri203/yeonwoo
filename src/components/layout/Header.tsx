@@ -12,7 +12,7 @@ export function Header() {
           {navItems.map((item) => <Link key={item.href} href={item.href} className="hover:text-[#0052B8]">{item.label}</Link>)}
         </nav>
         <div className="hidden items-center gap-2 lg:flex">
-          <a href={siteConfig.phoneHref} className="inline-flex items-center gap-2 rounded-full bg-[#0052B8] px-4 py-2 text-sm font-black text-white"><Phone size={15} aria-hidden />전화문의</a>
+          <a href={siteConfig.phoneHref} className="btn-base btn-primary btn-small"><Phone size={15} aria-hidden />전화문의</a>
         </div>
         <MobileMenu trigger={<Menu size={26} aria-label="메뉴 열기" />} />
       </div>

@@ -21,6 +21,8 @@ body {
   color: var(--ink);
   background: #fff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 a { color: inherit; text-decoration: none; }
 button, input, textarea, select { font: inherit; }
@@ -33,4 +35,12 @@ img { max-width: 100%; }
 .image-card-glow { box-shadow: 0 30px 70px rgba(17, 32, 90, .18); }
 .form-input { width: 100%; border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; outline: none; background: #fff; }
 .form-input:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 4px rgba(0, 82, 184, .12); }
+.text-keep { word-break: keep-all; overflow-wrap: break-word; text-wrap: balance; }
+.btn-base { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: 9999px; padding: 1rem 1.5rem; font-weight: 900; white-space: nowrap; box-shadow: 0 14px 28px rgba(17, 32, 90, .14); transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+.btn-base:hover { transform: translateY(-2px); box-shadow: 0 18px 34px rgba(17, 32, 90, .18); }
+.btn-small { padding: .55rem 1rem; font-size: .875rem; box-shadow: none; }
+.btn-primary { background: var(--primary-blue); color: #fff; }
+.btn-dark { background: var(--deep-blue); color: #fff; }
+.btn-yellow { background: var(--accent-yellow); color: var(--deep-blue); }
+.btn-white { background: rgba(255,255,255,.94); color: var(--deep-blue); border: 1px solid #B9DBFF; }
 @media (max-width: 768px) { .container-page { width: min(100% - 24px, 1120px); } body { padding-bottom: 74px; } }

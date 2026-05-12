@@ -21,7 +21,7 @@ export function VoiceForm() {
         <div className="rounded-2xl border border-[#E5E7EB] bg-[#F8FAFC] p-4 text-sm leading-7 text-[#667085]">정연우 선거사무소는 유권자 의견 접수 및 답변을 위해 이름, 연락처, 거주지, 의견 내용을 수집합니다. 수집된 정보는 의견 확인 및 답변 목적으로만 사용되며 목적 달성 시 파기됩니다.</div>
         <label className="flex items-start gap-3 rounded-2xl bg-[#FFF7D6] p-4 text-sm font-bold text-[#344054]"><input required type="checkbox" className="mt-1" aria-label="개인정보 수집 동의" />개인정보 수집 및 이용에 동의합니다.</label>
         <p className="text-sm font-bold text-[#667085]">현재 페이지는 시안 버전으로, 실제 저장 기능은 운영 단계에서 연결됩니다.</p>
-        <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0052B8] px-7 py-4 text-lg font-black text-white shadow-lg"><Send size={19} aria-hidden />의견 남기기</button>
+        <button type="submit" className="btn-base btn-primary text-lg"><Send size={19} aria-hidden />의견 남기기</button>
       </form>
       {submitted ? <div className="fixed inset-0 z-[90] flex items-center justify-center bg-[#11205A]/70 p-4"><div className="max-w-lg rounded-[2rem] bg-white p-8 text-center shadow-2xl"><button type="button" onClick={() => setSubmitted(false)} className="ml-auto block rounded-full bg-[#F8FAFC] p-2"><X size={20} aria-label="닫기" /></button><CheckCircle2 size={52} className="mx-auto text-[#0052B8]" aria-hidden /><h2 className="mt-4 text-3xl font-black text-[#11205A]">의견이 접수될 준비가 되었습니다</h2><p className="mt-3 leading-8 text-[#667085]">실제 운영 시 정연우 캠프가 확인 후 공약과 현장점검에 반영하겠습니다.</p></div></div> : null}
     </>
